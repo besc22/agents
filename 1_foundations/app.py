@@ -83,16 +83,19 @@ class Me:
         pdf_files = [
             "me/Profile.pdf",
             "me/EFZNotenausweis.pdf",
-            "LebenslaufBenjaminSchmidt.pdf"
+            "me/LebenslaufBenjaminSchmidt.pdf"
         ]
+
         for pdf_file in pdf_files:
             reader = PdfReader(pdf_file)
             for page in reader.pages:
                 text = page.extract_text()
                 if text:
-                    self.files_content += text
+                    self.files_content += text + "\n"
+
         with open("me/summary.txt", "r", encoding="utf-8") as f:
             self.summary = f.read()
+
 
 
     def handle_tool_call(self, tool_calls):
